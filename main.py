@@ -123,9 +123,9 @@ def main():
     my_time = time.strftime('%Y%m%d%H%M', time.gmtime(time.time()))
 
     train_df, valid_df = make_train_valid_dfs()   # make train, validation datasets
-    if args.text_encoder_model == 'distilbert-base-uncased':
+    if args.text_encoder_model == '':
         tokenizer = DistilBertTokenizer.from_pretrained(args.text_encoder_tokenizer) # read distil-bert language model
-    elif args.text_encoder_model == '/sda/mxli/CM-GCL/data/bert-base-chinese':
+    elif args.text_encoder_model == '':
         tokenizer = BertTokenizer.from_pretrained(args.text_encoder_tokenizer)  # read bert language model
     train_loader = build_loaders(train_df, mode="train")     #
     valid_loader = build_loaders(valid_df ,mode="valid")
