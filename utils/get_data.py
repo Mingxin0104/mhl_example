@@ -8,36 +8,7 @@ import random
 from utils.params import args
 import pandas as pd
 
-
-class NodeImageDataset():
-    def __init__(self, entity_id,image,label, transforms):
-
-
-        self.image_filenames = list(image)
-        self.entity_id = entity_id
-        self.transforms = transforms
-        self.label = label
-
-    def __getitem__(self, idx):
-
-        item = {}
-        # print(idx)
-
-        try:
-            image = plt.imread(self.image_filenames[idx])
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            image = self.transforms(image=image)['image']
-        except:
-            image = np.random.randn(224,224,3)
-            # print("error happened")
-        item['image'] = torch.tensor(image).permute(2, 0, 1).float()
-        item['entity'] = self.entity_id[idx]
-        item['label'] = self.label[idx]
-
-        return item
-
-    def __len__(self):
-        return len(self.image_filenames)
+# An example for text node extraction.
 
 
 class NodeTextDataset():
